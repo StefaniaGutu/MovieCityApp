@@ -74,7 +74,7 @@ namespace MovieCity.BusinessLogic.Implementation.Account
             await UnitOfWork.SaveChangesAsync();
         }
 
-        public async Task<CurrentUserDTO> Login(string username, string password)
+        public async Task<LoggedUserDTO> Login(string username, string password)
         {
             var user = await UnitOfWork.Users.Get()
                 .Include(u => u.UserRoles)
@@ -84,19 +84,19 @@ namespace MovieCity.BusinessLogic.Implementation.Account
 
             if (user == null)
             {
-                return new CurrentUserDTO { IsAuthenticated = false };
+                return new LoggedUserDTO { IsAuthenticated = false };
             }
 
             if (user.IsDeleted)
             {
-                return new CurrentUserDTO { IsAuthenticated = false };
+                return new LoggedUserDTO { IsAuthenticated = false };
             }
 
             var passwordHash = HashPassword(password, user.Salt);
 
             if (user.Password != passwordHash)
             {
-                return new CurrentUserDTO { IsAuthenticated = false };
+                return new LoggedUserDTO { IsAuthenticated = false };
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -121,14 +121,20 @@ namespace MovieCity.BusinessLogic.Implementation.Account
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return new CurrentUserDTO
+            CurrentUser.Id = user.Id;
+            CurrentUser.FullName = user.FullName;
+            CurrentUser.Username = user.Username;
+            CurrentUser.Email = user.Email;
+            CurrentUser.IsAuthenticated = true;
+            CurrentUser.Roles = user.UserRoles.Select(ur => ur.Role.Name).ToList();
+            CurrentUser.Token = tokenHandler.WriteToken(token).ToString();
+
+            return new LoggedUserDTO
             {
-                Id = user.Id,
-                FullName = user.FullName,
                 Username = user.Username,
                 Email = user.Email,
                 IsAuthenticated = true,
-                Roles = user.UserRoles.Select(ur => ur.Role.Name).ToList(),
+                Image = GetCurrentUserImage(),
                 Token = tokenHandler.WriteToken(token).ToString()
             };
         }
@@ -150,7 +156,7 @@ namespace MovieCity.BusinessLogic.Implementation.Account
                 return string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.UserImage.Image));
             else
             {
-                return GetDefaultUserImage();
+                return null;
             }
         }
 

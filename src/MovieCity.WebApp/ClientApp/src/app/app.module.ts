@@ -16,9 +16,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material';
+import { MatMenuModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieModule } from 'ngx-cookie';
+import { CookieService } from 'ng2-cookies/cookie';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainLayoutComponent,
     SidebarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CookieModule.forRoot(),
+    MatMenuModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

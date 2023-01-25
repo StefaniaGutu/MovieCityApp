@@ -19,5 +19,8 @@
     <mat-card-actions>
       <button mat-raised-button class="customButton" (click)="loginUser()">Log in</button>
     </mat-card-actions>
+
+    <div class="alert alert-danger" *ngIf="showError">{{ showError }}</div>
+
     <p>Not a member? <a routerLink="/register">Create an account</a></p>
 </mat-card>

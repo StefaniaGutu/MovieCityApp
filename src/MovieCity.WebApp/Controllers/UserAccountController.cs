@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieCity.BusinessLogic.Implementation.Account;
 using MovieCity.BusinessLogic.Implementation.Account.Models;
+using MovieCity.Common.DTOs;
 using MovieCity.WebApp.Code.Base;
+using System.Security.Claims;
 
 namespace MovieCity.WebApp.Controllers
 {
@@ -29,15 +32,15 @@ namespace MovieCity.WebApp.Controllers
 
             await Service.RegisterNewUser(model);
             var user = await Service.Login(model.Username, model.Password);
-            //await LogIn(user);
 
-            return Ok(user.Token);
+            return Ok(user);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
         public async Task<IActionResult> Login(LoginModel model)
+
         {
             var user = await Service.Login(model.Username, model.Password);
 
@@ -46,7 +49,9 @@ namespace MovieCity.WebApp.Controllers
                 return BadRequest("Invalid username or password");
             }
 
-            return Ok(user.Token);
+            return Ok(user);
         }
+
+
     }
 }
