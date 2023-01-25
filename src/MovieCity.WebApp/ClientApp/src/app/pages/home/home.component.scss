@@ -1,0 +1,165 @@
+$base-color: #bb6a6a;
+
+.first-clr {
+    color: $base-color;
+}
+
+.home-content {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.landing-page {
+    user-select: none;
+}
+
+.landing-page .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.landing-page .landing {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landing-page .landing .text-cont {
+    width: 60%;
+}
+
+.landing-page .landing .text-cont .header {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.landing-page .landing .text-cont .description {
+    font-size: 16px;
+    margin: 30px 0;
+    color: #777;
+    font-weight: 400;
+    width: 80%;
+}
+
+.landing-page .landing .text-cont .btn {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Titillium Web', sans-serif;
+    padding: .6rem 1rem;
+    text-align: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, .1);
+    transition: all .2s linear;
+}
+
+.landing-page .landing .text-cont .btn-discover {
+    min-width: 180px;
+    margin-right: 5px;
+    color: #FFF;
+    background-color: $base-color;
+}
+
+.landing-page .landing .text-cont .btn-discover:hover {
+    border-color: $base-color;
+    background-color: transparent !important;
+    color: $base-color;
+}
+
+.landing-page .landing .text-cont .btn-play {
+    color: $base-color;
+}
+
+.landing-page .landing .text-cont .btn-play:hover {
+    border-color: $base-color;
+    background-color: $base-color;
+    color: #FFF;
+}
+
+.landing-page .landing .img-cont {
+    width: 35%;
+    position: relative;
+}
+
+.landing-page .landing .img-cont::before,
+.landing-page .landing .img-cont::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background-color: $base-color;
+}
+
+.landing-page .landing .img-cont::before {
+    top: -5%;
+    left: -7%;
+    width: 100%;
+    height: 60px;
+}
+
+.landing-page .landing .img-cont::after {
+    height: 25vh;
+    width: 25vh;
+    max-width: 180px;
+    max-height: 180px;
+    bottom: -5%;
+    left: -5%;
+    border-radius: 0 0 0 15px;
+}
+
+.landing-page .landing .img-cont .img {
+    width: 100%;
+    display: block;
+    border-radius: 0 0 0 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .25);
+}
+
+.content {
+    margin-left: 250px;
+}
+
+.titlu {
+    text-align: center;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    padding-top: 30px;
+}
+
+.movieimage {
+    height: 340px;
+    width: 285px;
+    overflow: hidden;
+    object-fit: cover;
+    align-self: center;
+}
+
+.culoare {
+    color: black !important;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.div-movies {
+    justify-content: center !important;
+}
+
+.movie-details {
+    align-items: center;
+    height: 100%;
+}
+
+.genres-section {
+    text-align: center;
+}
+
+.btn-genre {
+    border-radius: 12px;
+    border-color: darkgrey;
+}
+
+.card-body {
+    padding-bottom: 0;
+}

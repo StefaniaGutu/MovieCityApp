@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieModule } from 'ngx-cookie';
 import { CookieService } from 'ng2-cookies/cookie';
 import { HomeComponent } from './pages/home/home.component';
+import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-series.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './pages/home/home.component';
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    MoviesAndSeriesComponent
   ],
   imports: [
     BrowserModule,

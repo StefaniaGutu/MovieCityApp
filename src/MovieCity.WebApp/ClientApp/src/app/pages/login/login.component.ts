@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.authenticationService.loginUser(this.user).subscribe(
             (res) => {
               this.authenticationService.saveLoggedUser(res);
-              this.router.navigate(['register']);
+              this.router.navigate(['home']);
               this.commonService.sendUpdate(res);
             }, error => {
               this.showError = error.error;

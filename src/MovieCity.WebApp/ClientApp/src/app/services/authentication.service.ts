@@ -50,7 +50,7 @@ export class AuthenticationService {
   logoutUser(){
     this.cookieService.deleteAll();
     this.cookieService.set("isAuthenticated", 'false');
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/home']); 
 
     // GlobalComponent.isAuthenticated = false;
     // GlobalComponent.token = '';
