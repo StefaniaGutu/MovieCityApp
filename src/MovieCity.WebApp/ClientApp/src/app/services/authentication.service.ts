@@ -47,6 +47,10 @@ export class AuthenticationService {
     return this.cookieService.get('username');
   }
 
+  getToken(){
+    return this.cookieService.get('token');
+  }
+
   logoutUser(){
     this.cookieService.deleteAll();
     this.cookieService.set("isAuthenticated", 'false');

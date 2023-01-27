@@ -18,11 +18,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMenuModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieModule } from 'ngx-cookie';
 import { CookieService } from 'ng2-cookies/cookie';
 import { HomeComponent } from './pages/home/home.component';
 import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-series.component';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-s
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    MoviesAndSeriesComponent
+    MoviesAndSeriesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,13 @@ import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-s
     CookieModule.forRoot(),
     MatMenuModule
   ],
-  providers: [CookieService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

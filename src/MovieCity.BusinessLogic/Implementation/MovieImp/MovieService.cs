@@ -45,43 +45,13 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp
             return Mapper.ProjectTo<ListMoviesAndSeriesModel>(UnitOfWork.MoviesAndSeries.Get());
         }
 
-        public async Task<IPagedList<ListMoviesWithDetailsModel>> GetMoviesWithDetails(string searchString, 
-            ShowTypes? showType, 
-            Guid? genreFilter, 
-            int pageNumber, 
-            int pageSize)
+        public async Task<List<ListMoviesWithDetailsModel>> GetMoviesWithDetails()
         {
             var movies = Mapper.ProjectTo<ListMoviesWithDetailsModel>(UnitOfWork.MoviesAndSeries.Get()
                 .Include(m => m.MovieOrSeriesImage)
                 .Include(m => m.Genres));
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(m => m.Title.Contains(searchString));
-            }
-
-            switch (showType)
-            {
-                case ShowTypes.Movies:
-                    {
-                        movies = movies.Where(m => !m.IsSeries);
-                        break;
-                    }
-                case ShowTypes.Series:
-                    {
-                        movies = movies.Where(m => m.IsSeries);
-                        break;
-                    }
-                default:
-                    break;
-            }
-
-            if(genreFilter != null && genreFilter != Guid.Empty)
-            {
-                movies = movies.Where(m => m.Genres.Any(g => g.Id == genreFilter));
-            }
-
-            return await movies.OrderBy(m => m.Title).ToPagedListAsync(pageNumber, pageSize);
+            return await movies.OrderBy(m => m.Title).ToListAsync();
         }
 
         public async Task<IPagedList<ListMoviesWithDetailsModel>> GetWatchedMovies(bool watched, string searchString, int pageNumber, int pageSize)

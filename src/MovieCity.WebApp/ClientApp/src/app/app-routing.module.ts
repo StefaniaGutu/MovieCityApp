@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-series.component';
@@ -8,7 +9,8 @@ import { RegisterComponent } from './pages/register/register.component';
 const routes: Routes = [
   {
     path:'',
-    component: HomeComponent
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path:'home',
@@ -25,6 +27,10 @@ const routes: Routes = [
   {
     path:'moviesAndSeries',
     component: MoviesAndSeriesComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

@@ -23,6 +23,20 @@ font-size: 14px;
 a:hover {
     color: #fff;
 }
+
+.btn-genre {
+    cursor: unset !important;
+    border-radius: 15px !important;
+    background-image: linear-gradient(to right,#f0f0f0,#a8a8a8);
+    width: fit-content;
+    border: 2px solid darkgrey;
+    height: fit-content;
+    margin-right: 4px;
+    max-width: 90px;
+    max-height: 30px;
+    overflow: hidden;
+    padding: 2px;
+}
   
  
   
