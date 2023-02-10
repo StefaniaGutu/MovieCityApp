@@ -12,12 +12,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isUserLoggedIn = false;
   public userImage = '';
   public userUsername = '';
+  public userId = '';
 
   private subscription: Subscription; 
 
   constructor(public authenticationService:AuthenticationService, private commonService: CommonService) { 
     this.subscription = this.commonService.getUpdate().subscribe
              (message => {
+             this.userId = message.id;
              this.isUserLoggedIn = true;
              //this.userImage = message.image;
              this.userImage = "../assets/no-profile-picture.png"

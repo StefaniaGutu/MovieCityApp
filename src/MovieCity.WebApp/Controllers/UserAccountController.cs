@@ -5,7 +5,6 @@ using MovieCity.BusinessLogic.Implementation.Account;
 using MovieCity.BusinessLogic.Implementation.Account.Models;
 using MovieCity.Common.DTOs;
 using MovieCity.WebApp.Code.Base;
-using System.Security.Claims;
 
 namespace MovieCity.WebApp.Controllers
 {
@@ -52,6 +51,14 @@ namespace MovieCity.WebApp.Controllers
             return Ok(user);
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("profile")]
+        public async Task<IActionResult> UserProfile(Guid id)
+        {
+            var model = await Service.GetUserProfileModelById(id);
 
+            return Ok(model);
+        }
     }
 }

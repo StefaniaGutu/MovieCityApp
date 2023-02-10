@@ -1,0 +1,52 @@
+.imagine {
+    height: 150px;
+    overflow: hidden;
+    width: 150px;
+    object-fit: cover;
+}
+
+.culoare {
+    color: black !important;
+    text-decoration: none;
+}
+
+.culoare:hover{
+    color: #BB6A6A !important;
+}
+
+.checked {
+    color: orange;
+}
+
+.btn-all-reviews{
+    border-radius: 30px;
+    text-align: center;
+}
+
+.recent-reviews {
+    text-align: -webkit-center;
+}
+
+.table-reviews {
+    width: 90% !important;
+    text-align: center;
+}
+
+.div-reviews {
+    text-align: -webkit-center;
+}
+
+.delete-i {
+    color: black;
+    font-size: 22px;
+}
+
+.delete-btn{
+    background-color: none !important;
+    border: none;
+}
+
+.card-genres{
+    width: 33%;
+    height: 262px;
+}

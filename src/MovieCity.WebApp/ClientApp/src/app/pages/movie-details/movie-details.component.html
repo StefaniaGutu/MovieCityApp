@@ -1,0 +1,134 @@
+<div>
+    <div id="content_hero" class="center-content hero-ontop">
+        <div class="container">
+            <div class="row blurb scrollme animateme">
+                <div class="col-md-9">
+                    <span class="title">{{movieDetails.genres.join(", ")}}</span>
+                    <h1><b>{{movieDetails.title}}</b></h1>
+
+                    <div class="d-flex like-btns" *ngIf="isUserLoggedIn">
+                        <button class="like" (click)="addLike(true)">
+                            <i id="likeBtn" class="fa fa-thumbs-up like" [ngClass]="{'checked': movieDetails.isLiked}"> Like {{movieDetails.likesNo}}</i>
+                        </button>
+                        <button class="like" (click)="addLike(false)">
+                            <i id="dislikeBtn" class="fa fa-thumbs-down dislike" [ngClass]="{'checked': movieDetails.isDisliked}"> Dislike {{movieDetails.dislikesNo}}</i>
+                        </button>
+                    </div>
+
+                    <p><i class="fa fa-clock-o"></i><time> {{movieDetails.duration}} min</time></p>
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> {{movieDetails.releaseDate | date:'MM/dd/yyyy'}}</p>
+                    <p>{{movieDetails.description}}</p>
+                
+                    <div class="buttons d-flex" *ngIf="isUserLoggedIn">
+                        <button class="btn-details btn-default" id="watchedBtn" (click)="addInWatched(true)">
+                            <i class="fa fa-times selected" id="watchedI" aria-hidden="true" *ngIf="movieDetails.isInWatched">Remove from watched</i>
+                            <i class="fa fa-eye" id="watchedI" aria-hidden="true" *ngIf="!movieDetails.isInWatched">Already watched</i>
+                            
+                        </button>
+
+                        <button class="btn-details btn-default" id="watchlistBtn" (click)="addInWatched(false)">
+                            <i class="fa fa-times selected" id="watchlistI" aria-hidden="true" *ngIf="movieDetails.isInWatchlist">Remove from watchlist</i>
+                            <i class="fa fa-eye" id="watchlistI" aria-hidden="true" *ngIf="!movieDetails.isInWatchlist">Add to watchlist</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="image col-md-3 pr-5">
+                    <img *ngIf="movieDetails.hasAvailableImage" [src]="[movieDetails.image]" alt="No Image" width="100%" height="auto">
+                    <img *ngIf="!movieDetails.hasAvailableImage" src="../assets/default-movie-image.png" alt="No Image" width="100%" height="auto">
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="actors-section">Actors</h3>
+    <div class="container">
+        <div class="row row-actors">
+            <div class="col-lg-3 mb-2" *ngFor="let actor of movieDetails.actors">
+                <a class="culoare">
+                    <div class="card row mr-3 w-100" style="height: 100%;">
+                        <img [src]="[actor.image]" alt="No Image" class="card-img-top actorimage" *ngIf="actor.hasAvailableImage">
+                        <img src="../assets/default-actor-image.jpg" alt="No Image" class="card-img-top actorimage" *ngIf="!actor.hasAvailableImage">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title center-content" style="text-align: center;">{{ actor.name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+                
+            <h5 class="text-center" *ngIf="movieDetails.actors.length === 0">No actors for this movie</h5>
+        </div>
+    </div> 
+    <h3 class="reviews-section">Reviews</h3>
+    <div class="reviews" id="reviewsSection">
+        <div class="review" *ngFor="let review of movieDetails.reviews">
+            <div>
+                <img src="@review.UserImage" alt="" width="32" height="32" class="rounded-circle me-2" style="object-fit: cover;">
+                
+                <a class="culoare" asp-controller="UserAccount" asp-action="UserProfileByUsername" asp-route-username="@review.Username" *ngIf="isUserLoggedIn">
+                    <strong>{{ review.username }}</strong>
+                </a>
+                <strong *ngIf="!isUserLoggedIn">{{ review.username }}</strong>
+
+                <span>  -  {{review.date | date:'MM/dd/yyyy'}}</span>
+                <!-- @if (Context.User.Claims.Any(r => r.Value == "Admin") || CurrentUser.Username == review.Username) -->
+                <!-- <button class="btn delete" onclick="deleteReview('@review.Id.ToString("D")')"><i class="fa fa-trash fa-2x delete-btn"></i></button> -->
+                
+            </div>
+
+            <span class="fa fa-star checked" *ngFor="let i in review.rating"></span>
+            <span class="fa fa-star" *ngFor="let i in 5-review.rating"></span>
+            <br>
+            <p>{{ review.reviewText }}</p>
+        </div>
+        <h5 class="text-center" id="noReviews" *ngIf="movieDetails.reviews.length === 0">No reviews for this movie</h5>
+    </div>
+    
+    <button type="button" id="newReviewBtn" class="btn-details btn-default btn-info add-new mt-3" (click)="showReviewSection();" *ngIf="isUserLoggedIn && !showNewReviewSection"><i class="fa fa-plus"></i> Add Review</button>
+</div>
+
+<div class="formreview newreview" *ngIf="showNewReviewSection">
+    <div class="form-group">
+        <div class="col-md-4">
+            <div>
+                <span class="input-group-addon"><i class="fa fa-heart"> Rate movie</i></span>
+                <select class="form-control" id="rate" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <div>
+                <span class="input-group-addon"><i class="fa fa-pencil"> Review text</i></span>
+                <textarea class="form-control" id="reviewText" rows="3" name="reviewText"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" name="showInFeed" value="true" id="showInFeed" (click)="showInput();">
+        <label class="form-check-label">
+            Show in feed
+        </label>
+    </div>
+
+    <div class="form-group" id="postText" *ngIf="showReviewInput">
+        <div class="col-md-4">
+            <div>
+                <span class="input-group-addon"><i class="fa fa-pencil"> Post text (Optional)</i></span>
+                <textarea class="form-control" rows="3" name="postText" id="textPost"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-2 d-flex" style="justify-content: right">
+        <button class="btn btn-primary submitbtn" id="cancel" (click)="cancelReview()">Cancel</button>
+        <button type="submit" class="btn btn-primary submitbtn" (click)="addReview()">Submit</button>
+    </div>
+</div>

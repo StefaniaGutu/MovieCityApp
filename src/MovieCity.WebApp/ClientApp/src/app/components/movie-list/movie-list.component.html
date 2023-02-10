@@ -1,0 +1,31 @@
+<h2>{{title}}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6" *ngFor="let movie of moviesAndSeriesList">
+            <div class="card mb-3 mr-3 w-100">
+                <div class="row no-gutters">
+                    <div class="col-md-4 image" *ngIf="movie.hasAvailableImage">
+                        <img [src]="movie.image" class="card-img" alt="No Image">
+                    </div>
+                    <div class="col-md-4 image" *ngIf="!movie.hasAvailableImage">
+                        <img src="../assets/default-movie-image.png" class="card-img" alt="No Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row w-100 pb-2 mt-2 title-div">
+                            <div class="col-md-10"><h5 class="card-title titlu">{{ movie.title }}</h5></div>
+                            <div class="col-md-2 p-0" *ngIf="movie.isSeries"><span id="type">Series</span></div>
+                            <div class="col-md-2 p-0" *ngIf="!movie.isSeries"><span id="type">Movie</span></div>
+                        </div>
+                        <div class="row w-100 desc-div"><p class="card-text desc">{{ movie.description }}</p></div>
+                        <div class="row w-100 genre-div">
+                            <div class="col-lg-12 p-0">
+                                <button class="btn-genre" *ngFor="let genre of movie.genres">{{ genre.name }}</button>
+                                <button class="customButton details" [routerLink]="['/movie/' + movie.id]">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@ namespace MovieCity.BusinessLogic.Implementation.WatchAndLikeImp
         {
         }
 
-        public async Task<bool> AddWatch(Guid movieId, bool isAlreadyWatched)
+        public async Task AddWatch(Guid movieId, bool isAlreadyWatched)
         {
             var oldWatch = await UnitOfWork.Watch.Get()
                 .Include(w => w.MovieSeries)
@@ -32,11 +32,9 @@ namespace MovieCity.BusinessLogic.Implementation.WatchAndLikeImp
                 UnitOfWork.Watch.Delete(oldWatch);
             }
             await UnitOfWork.SaveChangesAsync();
-
-            return UnitOfWork.MoviesAndSeries.Get().FirstOrDefault(m => m.Id == movieId).IsSeries;
         }
 
-        public async Task<bool> AddLike(Guid movieId, bool isLiked)
+        public async Task AddLike(Guid movieId, bool isLiked)
         {
             var oldLike = await UnitOfWork.LikeMovie.Get().FirstOrDefaultAsync(w => w.MovieSeriesId == movieId && w.UserId == CurrentUser.Id);
            
@@ -65,7 +63,6 @@ namespace MovieCity.BusinessLogic.Implementation.WatchAndLikeImp
                 }
             }
             await UnitOfWork.SaveChangesAsync();
-            return UnitOfWork.MoviesAndSeries.Get().FirstOrDefault(m => m.Id == movieId).IsSeries;
         }
     }
 }

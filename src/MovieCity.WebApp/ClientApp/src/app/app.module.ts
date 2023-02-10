@@ -25,6 +25,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { MoviesAndSeriesComponent } from './pages/movies-and-series/movies-and-series.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
+import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { BasicCardComponent } from './components/basic-card/basic-card.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-fou
     RegisterComponent,
     HomeComponent,
     MoviesAndSeriesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MovieDetailsComponent,
+    BasicCardComponent,
+    UserProfileComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,

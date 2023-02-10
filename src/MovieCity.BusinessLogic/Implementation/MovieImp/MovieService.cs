@@ -54,7 +54,7 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp
             return await movies.OrderBy(m => m.Title).ToListAsync();
         }
 
-        public async Task<IPagedList<ListMoviesWithDetailsModel>> GetWatchedMovies(bool watched, string searchString, int pageNumber, int pageSize)
+        public async Task<List<ListMoviesWithDetailsModel>> GetWatchedMovies(bool watched)
         {
             var movies = Mapper.ProjectTo<ListMoviesWithDetailsModel>(UnitOfWork.Watch.Get()
                 .Include(m => m.MovieSeries)
@@ -63,15 +63,10 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp
                     .ThenInclude(m => m.Genres)
                 .Where(m => m.UserId == CurrentUser.Id && m.IsAlreadyWatched == watched));
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(m => m.Title.Contains(searchString));
-            }
-
-            return await movies.OrderBy(m => m.Title).ToPagedListAsync(pageNumber, pageSize);
+            return await movies.OrderBy(m => m.Title).ToListAsync();
         }
 
-        public async Task<IPagedList<ListMoviesWithDetailsModel>> GetLikedMovies(string searchString, int pageNumber, int pageSize)
+        public async Task<List<ListMoviesWithDetailsModel>> GetLikedMovies()
         {
             var movies = Mapper.ProjectTo<ListMoviesWithDetailsModel>(UnitOfWork.LikeMovie.Get()
                 .Include(m => m.MovieSeries)
@@ -80,12 +75,7 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp
                     .ThenInclude(m => m.Genres)
                 .Where(m => m.UserId == CurrentUser.Id && m.IsLiked == true));
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(m => m.Title.Contains(searchString));
-            }
-
-            return await movies.OrderBy(m => m.Title).ToPagedListAsync(pageNumber, pageSize);
+            return await movies.OrderBy(m => m.Title).ToListAsync();
         }
 
         private async Task<List<ListMoviesWithDetailsModel>> GetMostLikedMovies()
@@ -291,13 +281,13 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp
             movieModel.IsInWatched = watches.Where(w => w.IsAlreadyWatched).FirstOrDefault() != null;
             movieModel.IsInWatchlist = watches.Where(w => !w.IsAlreadyWatched).FirstOrDefault() != null;
 
-            movieModel.Reviews = await reviewService.GetReviewsForMovie(id);
+            //movieModel.Reviews = await reviewService.GetReviewsForMovie(id);
 
-            var image = await UnitOfWork.UserImages.Get().FirstOrDefaultAsync(u => u.UserId == CurrentUser.Id);
-            if(image != null)
-            {
-                movieModel.CurrentUserImage = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(image.Image));
-            } 
+            //var image = await UnitOfWork.UserImages.Get().FirstOrDefaultAsync(u => u.UserId == CurrentUser.Id);
+            //if(image != null)
+            //{
+            //    movieModel.CurrentUserImage = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(image.Image));
+            //} 
 
             return movieModel;
         }

@@ -9,6 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MoviesAndSeriesComponent implements OnInit {
   public allMoviesAndSeries: MovieWithDetailsDto[] = [];
+  public pageTitle: string = "Movies & Series";
 
   constructor(private movieService: MovieService) { }
 

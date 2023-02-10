@@ -21,6 +21,6 @@ namespace MovieCity.BusinessLogic.Implementation.MovieImp.Models
         public bool IsInWatchlist { get; set; }
         public bool IsInWatched { get; set; }
         public List<ReviewModel> Reviews {get; set; }
-        public string? CurrentUserImage { get; set; }
+        //public string? CurrentUserImage { get; set; }
     }
 }

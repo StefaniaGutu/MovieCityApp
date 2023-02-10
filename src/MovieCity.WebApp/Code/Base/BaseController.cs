@@ -5,7 +5,7 @@ namespace MovieCity.WebApp.Code.Base
 {
     public class BaseController : ControllerBase
     {
-        protected readonly CurrentUserDTO CurrentUser;
+        public CurrentUserDTO CurrentUser;
 
         public BaseController(ControllerDependencies dependencies) : base()
         {

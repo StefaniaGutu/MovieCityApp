@@ -131,6 +131,7 @@ namespace MovieCity.BusinessLogic.Implementation.Account
 
             return new LoggedUserDTO
             {
+                Id = user.Id,
                 Username = user.Username,
                 Email = user.Email,
                 IsAuthenticated = true,
@@ -250,10 +251,6 @@ namespace MovieCity.BusinessLogic.Implementation.Account
             if (user.UserImage != null)
             {
                 model.ActualImage = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.UserImage.Image));
-            }
-            else
-            {
-                model.ActualImage = GetDefaultUserImage();
             }
 
             model.Status = await GetStatus(CurrentUser.Id, model.Id);

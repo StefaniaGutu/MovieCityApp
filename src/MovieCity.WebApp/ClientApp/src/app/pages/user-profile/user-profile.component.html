@@ -1,0 +1,75 @@
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img *ngIf="userProfile.hasAvailableImage" [src]="userProfile.actualImage" alt="Profile Picture"
+                             class="rounded-circle img-fluid imagine">
+                        <img *ngIf="!userProfile.hasAvailableImage" src="../assets/no-profile-picture.png" alt="Profile Picture"
+                             class="rounded-circle img-fluid imagine">
+                        <h5 class="my-2">{{userProfile.fullName}}</h5>
+                        <p class="text-muted mb-3">@{{userProfile.username}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4 mb-lg-0 card-genres">
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush rounded-3">
+                        <li class="list-group-item p-3 text-center">
+                            <b>Top 3 Favorite Genres</b>
+                        </li>
+                        <li class="list-group-item d-flex align-self-center mt-2">
+                            <p class="text-center">
+                                <button class="btn-genre" *ngFor="let genre of userProfile.favoriteGenres">@Html.DisplayFor(model => genre)</button>
+                            </p>
+                            <p class="text-center" *ngIf="userProfile.favoriteGenres.length === 0">No favorite genres</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Full Name</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{userProfile.fullName}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{userProfile.email}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Username</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{userProfile.username}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Birth Date</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{userProfile.birthDate | date:'MM/dd/yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

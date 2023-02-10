@@ -33,79 +33,38 @@ namespace MovieCity.WebApp.Controllers
         {
             var model = await Service.GetMoviesWithDetails();
 
-            return NotFound(model);
+            return Ok(model);
+        }
+
+        [HttpGet]
+        [Route("getWatchlist")]
+        [Authorize]
+        public async Task<IActionResult> Watchlist()
+        {
+            var model = await Service.GetWatchedMovies(false);
 
             return Ok(model);
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> Watchlist([FromQuery] string searchString, string currentFilter, int? page)
-        //{
-        //    if (searchString != null)
-        //    {
-        //        page = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
+        [HttpGet]
+        [Route("getWatchedMovies")]
+        [Authorize]
+        public async Task<IActionResult> WatchedMovies()
+        {
+            var model = await Service.GetWatchedMovies(true);
 
-        //    @ViewBag.CurrentFilter = searchString;
+            return Ok(model);
+        }
 
-        //    int pageSize = 6;
-        //    int pageNumber = (page ?? 1);
+        [HttpGet]
+        [Route("getLikedMovies")]
+        [Authorize]
+        public async Task<IActionResult> LikedMovies()
+        {
+            var model = await Service.GetLikedMovies();
 
-        //    var model = await Service.GetWatchedMovies(false, searchString, pageNumber, pageSize);
-
-        //    return View("Watchlist", model);
-        //}
-
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> WatchedMovies([FromQuery] string searchString, string currentFilter, int? page)
-        //{
-        //    if (searchString != null)
-        //    {
-        //        page = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
-
-        //    @ViewBag.CurrentFilter = searchString;
-
-        //    int pageSize = 6;
-        //    int pageNumber = (page ?? 1);
-
-        //    var model = await Service.GetWatchedMovies(true, searchString, pageNumber, pageSize);
-
-        //    return View("WatchedMovies", model);
-        //}
-
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> LikedMovies([FromQuery] string searchString, string currentFilter, int? page)
-        //{
-        //    if (searchString != null)
-        //    {
-        //        page = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
-
-        //    @ViewBag.CurrentFilter = searchString;
-
-        //    int pageSize = 6;
-        //    int pageNumber = (page ?? 1);
-
-        //    var model = await Service.GetLikedMovies(searchString, pageNumber, pageSize);
-
-        //    return View("LikedMovies", model);
-        //}
+            return Ok(model);
+        }
 
         //[HttpGet]
         //[Authorize]
@@ -125,13 +84,14 @@ namespace MovieCity.WebApp.Controllers
         //    return View(model);
         //}
 
-        //[HttpGet]
-        //public async Task<IActionResult> MovieDetails(Guid id)
-        //{
-        //    var model = await Service.GetMovieModelById(id);
+        [HttpGet]
+        [Route("getMovieDetails")]
+        public async Task<IActionResult> MovieDetails(Guid id)
+        {
+            var model = await Service.GetMovieModelById(id);
 
-        //    return View("MovieDetails", model);
-        //}
+            return Ok(model);
+        }
 
         //[HttpGet]
         //[Authorize(Roles = "Admin")]
@@ -150,7 +110,7 @@ namespace MovieCity.WebApp.Controllers
 
         //    int pageSize = 5;
         //    int pageNumber = (page ?? 1);
-            
+
         //    var model = await Service.GetMovies(searchString, pageNumber, pageSize);
 
         //    return View(model);

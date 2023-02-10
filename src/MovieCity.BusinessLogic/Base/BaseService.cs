@@ -14,7 +14,7 @@ namespace MovieCity.BusinessLogic.Base
     {
         protected readonly IMapper Mapper;
         protected readonly UnitOfWork UnitOfWork;
-        protected readonly CurrentUserDTO CurrentUser;
+        public CurrentUserDTO CurrentUser;
 
         public BaseService(ServiceDependencies serviceDependencies)
         {

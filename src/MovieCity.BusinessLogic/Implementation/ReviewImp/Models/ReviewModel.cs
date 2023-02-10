@@ -14,5 +14,6 @@ namespace MovieCity.BusinessLogic.Implementation.ReviewImp.Models
         public DateTime Date { get; set; }
         public string Username { get; set; }
         public string UserImage { get; set; }
+        public bool HasAvailableImage { get; set; }
     }
 }
