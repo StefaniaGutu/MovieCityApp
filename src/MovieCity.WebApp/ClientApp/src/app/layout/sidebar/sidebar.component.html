@@ -2,13 +2,13 @@
     <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light sidebar">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a class="nav-link text-dark">Watched Movies</a>
+                <a class="nav-link text-dark" [routerLink]="['/watchedMovies']">Watched Movies</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark">Watchlist</a>
+                <a class="nav-link text-dark" [routerLink]="['/watchlist']">Watchlist</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link text-dark">Liked Movies</a>
+                <a class="nav-link text-dark" [routerLink]="['/likedMovies']">Liked Movies</a>
             </li>
         </ul>
     </div>

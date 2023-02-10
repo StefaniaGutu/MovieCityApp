@@ -29,6 +29,9 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
 import { BasicCardComponent } from './components/basic-card/basic-card.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { WatchedMoviesComponent } from './pages/watched-movies/watched-movies.component';
+import { WatchlistComponent } from './pages/watchlist/watchlist.component';
+import { LikedMoviesComponent } from './pages/liked-movies/liked-movies.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
     MovieDetailsComponent,
     BasicCardComponent,
     UserProfileComponent,
-    MovieListComponent
+    MovieListComponent,
+    WatchedMoviesComponent,
+    WatchlistComponent,
+    LikedMoviesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MovieWithDetailsDto } from 'src/app/interfaces/movie-with-details-dto';
-import { MovieDetailsComponent } from 'src/app/pages/movie-details/movie-details.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,6 +9,7 @@ import { MovieDetailsComponent } from 'src/app/pages/movie-details/movie-details
 export class MovieListComponent implements OnInit {
   @Input() moviesAndSeriesList: MovieWithDetailsDto[] = [];
   @Input() title: string = '';
+  @Input() showNoResults: boolean = false;
   
   constructor() { }
 

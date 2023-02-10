@@ -27,4 +27,16 @@ export class MovieService {
   addWatch(movieId: string, isAlreadyWatched: boolean){
     return this.http.post<any>(this.url+'/WatchAndLike/addWatch?movieId='+movieId+'&isAlreadyWatched='+isAlreadyWatched, null);
   }
+
+  getWatchlist(){
+    return this.http.get<MovieWithDetailsDto[]>(this.url+'/Movie/getWatchlist');
+  }
+
+  getLikedMovies(){
+    return this.http.get<MovieWithDetailsDto[]>(this.url+'/Movie/getLikedMovies');
+  }
+
+  getWatchedMovies(){
+    return this.http.get<MovieWithDetailsDto[]>(this.url+'/Movie/getWatchedMovies');
+  }
 }
