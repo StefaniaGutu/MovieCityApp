@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { LikedMoviesComponent } from './pages/liked-movies/liked-movies.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
   },
   {
     path:'moviesAndSeries',
-    component: MoviesAndSeriesComponent
+    component: MoviesAndSeriesComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'movie/:id',
@@ -39,19 +41,23 @@ const routes: Routes = [
   },
   {
     path: 'profile/:id',
-    component: UserProfileComponent
+    component: UserProfileComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path:'likedMovies',
-    component: LikedMoviesComponent
+    component: LikedMoviesComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path:'watchedMovies',
-    component: WatchedMoviesComponent
+    component: WatchedMoviesComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path:'watchlist',
-    component: WatchlistComponent
+    component: WatchlistComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: '**',

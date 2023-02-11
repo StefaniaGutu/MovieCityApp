@@ -21,7 +21,7 @@
                         </li>
                         <li class="list-group-item d-flex align-self-center mt-2">
                             <p class="text-center">
-                                <button class="btn-genre" *ngFor="let genre of userProfile.favoriteGenres">@Html.DisplayFor(model => genre)</button>
+                                <button class="btn-genre" *ngFor="let genre of userProfile.favoriteGenres">{{genre}}</button>
                             </p>
                             <p class="text-center" *ngIf="userProfile.favoriteGenres.length === 0">No favorite genres</p>
                         </li>

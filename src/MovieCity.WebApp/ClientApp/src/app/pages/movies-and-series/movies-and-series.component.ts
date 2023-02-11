@@ -10,6 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class MoviesAndSeriesComponent implements OnInit {
   public allMoviesAndSeries: MovieWithDetailsDto[] = [];
   public pageTitle: string = "Movies & Series";
+  public showNoResults: boolean = false;
 
   constructor(private movieService: MovieService) { }
 
@@ -20,6 +21,7 @@ export class MoviesAndSeriesComponent implements OnInit {
   getAllMovies(){
     this.movieService.getAllMoviesAndSeries().subscribe((res) => {
       this.allMoviesAndSeries = res;
+      this.showNoResults = true;
     })
   }
 }
