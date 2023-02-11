@@ -14,4 +14,23 @@
             </div>
         </div>
     </section>
+
+    <div>
+        <h2 class="titlu">Most popular movies</h2>
+        <div class="container">
+            <div class="row div-movies" >
+                <div class="col-lg-3 m-3" *ngFor="let movie of popularAndLikedMovies.mostPopularMovies">
+                    <app-basic-card [id]="movie.id" [title]="movie.title" [image]="movie.image" (onClickCard)="onClickMovie($event)"></app-basic-card>
+                </div>
+            </div>
+        </div>
+        <h2 class="titlu mt-4">Most liked movies</h2>
+        <div class="container">
+            <div class="row div-movies">
+                <div class="col-lg-3 m-3" *ngFor="let movie of popularAndLikedMovies.mostLikedMovies">
+                    <app-basic-card [id]="movie.id" [title]="movie.title" [image]="movie.image" (onClickCard)="onClickMovie($event)"></app-basic-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

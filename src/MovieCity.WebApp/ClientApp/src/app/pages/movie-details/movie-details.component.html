@@ -43,18 +43,9 @@
     <div class="container">
         <div class="row row-actors">
             <div class="col-lg-3 mb-2" *ngFor="let actor of movieDetails.actors">
-                <a class="culoare">
-                    <div class="card row mr-3 w-100" style="height: 100%;">
-                        <img [src]="[actor.image]" alt="No Image" class="card-img-top actorimage" *ngIf="actor.hasAvailableImage">
-                        <img src="../assets/default-actor-image.jpg" alt="No Image" class="card-img-top actorimage" *ngIf="!actor.hasAvailableImage">
-                        
-                        <div class="card-body">
-                            <h5 class="card-title center-content" style="text-align: center;">{{ actor.name }}</h5>
-                        </div>
-                    </div>
-                </a>
+                <app-basic-card [id]="actor.id" [title]="actor.name" [image]="actor.image" (onClickCard)="onClickActor($event)"></app-basic-card>
             </div>
-                
+
             <h5 class="text-center" *ngIf="movieDetails.actors.length === 0">No actors for this movie</h5>
         </div>
     </div> 
@@ -70,9 +61,6 @@
                 <strong *ngIf="!isUserLoggedIn">{{ review.username }}</strong>
 
                 <span>  -  {{review.date | date:'MM/dd/yyyy'}}</span>
-                <!-- @if (Context.User.Claims.Any(r => r.Value == "Admin") || CurrentUser.Username == review.Username) -->
-                <!-- <button class="btn delete" onclick="deleteReview('@review.Id.ToString("D")')"><i class="fa fa-trash fa-2x delete-btn"></i></button> -->
-                
             </div>
 
             <span class="fa fa-star checked" *ngFor="let i in review.rating"></span>

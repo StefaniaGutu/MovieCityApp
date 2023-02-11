@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
+import { ActorDetailsComponent } from './pages/actor-details/actor-details.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LikedMoviesComponent } from './pages/liked-movies/liked-movies.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'movie/:id',
     component: MovieDetailsComponent
+  },
+  {
+    path: 'actor/:id',
+    component: ActorDetailsComponent
   },
   {
     path: 'profile/:id',

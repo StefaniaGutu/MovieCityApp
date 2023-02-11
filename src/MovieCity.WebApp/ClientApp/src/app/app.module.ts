@@ -32,6 +32,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { WatchedMoviesComponent } from './pages/watched-movies/watched-movies.component';
 import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 import { LikedMoviesComponent } from './pages/liked-movies/liked-movies.component';
+import { ActorDetailsComponent } from './pages/actor-details/actor-details.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { LikedMoviesComponent } from './pages/liked-movies/liked-movies.componen
     MovieListComponent,
     WatchedMoviesComponent,
     WatchlistComponent,
-    LikedMoviesComponent
+    LikedMoviesComponent,
+    ActorDetailsComponent
   ],
   imports: [
     BrowserModule,

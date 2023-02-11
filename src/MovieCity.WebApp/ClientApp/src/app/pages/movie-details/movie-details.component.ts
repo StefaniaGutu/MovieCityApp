@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Guid } from 'guid-typescript';
 import { MovieDetailsPageDto } from 'src/app/interfaces/movie-details-page-dto';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -11,18 +12,14 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private authenticationService:AuthenticationService) { }
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, 
+    private authenticationService:AuthenticationService, private router: Router) { }
 
   movieId: string = '';
   movieDetails!: MovieDetailsPageDto;
   isUserLoggedIn: boolean = false;
   showNewReviewSection: boolean = false;
   showReviewInput: boolean = false;
-
-  // public newReview: NewReviewDto = 
-  // {
-      
-  // }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -97,5 +94,9 @@ export class MovieDetailsComponent implements OnInit {
 
   showInput(){
     this.showReviewInput = !this.showReviewInput;
+  }
+
+  onClickActor(id: Guid){
+    this.router.navigate(["/actor/"+ id.toString()]);
   }
 }

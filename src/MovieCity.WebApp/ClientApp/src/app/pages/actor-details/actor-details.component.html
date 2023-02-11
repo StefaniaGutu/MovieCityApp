@@ -1,0 +1,18 @@
+<div>
+    <div id="content_hero" class="center-content hero-ontop">
+        <div class="container">
+            <div class="row blurb scrollme animateme m-lg-3">
+                <div class="col-md-9">
+                    <span class="title">Actor</span>
+                    <h1><b>{{actorDetails.name}}</b></h1>
+                    <p class="mt-4">{{actorDetails.description}}</p>
+
+                </div>
+                <div class="image col-md-3 pr-5">
+                    <img *ngIf="actorDetails.hasAvailableImage" class="image" [src]="actorDetails.image" alt="No Image" width="100%" height="auto">
+                    <img *ngIf="!actorDetails.hasAvailableImage" src="../assets/default-actor-image.jpg" alt="No Image" width="100%" height="auto">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

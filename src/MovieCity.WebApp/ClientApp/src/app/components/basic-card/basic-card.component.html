@@ -1,1 +1,9 @@
-<p>basic-card works!</p>
+<div class="divCard" (click)="onClick(id)">
+    <div class="card row mr-3 w-100" style="height: 100%;">
+        <img [src]="[image]" alt="No Image" class="card-img-top cardImage">
+        
+        <div class="card-body">
+            <h5 class="card-title center-content" style="text-align: center;">{{ title }}</h5>
+        </div>
+    </div>
+</div>
